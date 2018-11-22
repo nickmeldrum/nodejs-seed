@@ -11,6 +11,28 @@
     "prewatch": "yarn prestart",
     "watch": "jest --watch --notify --coverage --collectCoverageFrom=src/**/*.mjs"
   },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "es2015",
+            {
+              "modules": false
+            }
+          ]
+        ],
+        "plugins": [
+          [
+            "transform-es2015-modules-commonjs",
+            {
+              "spec": true
+            }
+          ]
+        ]
+      }
+    }
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -35,7 +57,10 @@
     ]
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^3.3.0",
