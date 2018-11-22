@@ -1,4 +1,4 @@
-const module1 = require('src/module1')
+import module1 from 'src/module1'
 
 describe('module1', () => {
   test('outputs hello worlds', () => {

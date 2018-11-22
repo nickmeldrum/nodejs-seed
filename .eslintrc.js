@@ -6,12 +6,20 @@ module.exports = {
     jest: true,
   },
   rules: {
+    'import/extensions': [
+      'error',
+      'always',
+      {
+        js: 'always',
+        mjs: 'never',
+      },
+    ],
     'import/no-extraneous-dependencies': 0,
   },
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js'],
+        extensions: ['.js', '.mjs'],
         paths: ['.'],
       },
     },

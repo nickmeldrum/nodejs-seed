@@ -5,21 +5,37 @@
   "license": "MIT",
   "scripts": {
     "prestart": "ln -fs ../src node_modules",
-    "start": "node ./index.js",
+    "start": "node --experimental-modules ./index.mjs",
     "pretest": "yarn prestart",
-    "test": "eslint ./src/**/*.js && jest --coverage --collectCoverageFrom=src/**/*.js",
+    "test": "eslint ./src/**/*.mjs && jest --coverage --collectCoverageFrom=src/**/*.mjs",
     "prewatch": "yarn prestart",
-    "watch": "jest --watch --notify --coverage --collectCoverageFrom=src/**/*.js"
+    "watch": "jest --watch --notify --coverage --collectCoverageFrom=src/**/*.mjs"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
   },
+  "jest": {
+    "testMatch": [
+      "**/?(*.)(spec|test).mjs"
+    ],
+    "transform": {
+      "^.+\\.mjs$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "mjs"
+    ]
+  },
   "lint-staged": {
-    "*.js": ["eslint --fix", "git add"]
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "devDependencies": {
+    "babel-jest": "^23.6.0",
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^3.3.0",
